@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import {Header} from "./Header/Header";
 import {Nav} from "./Nav/Nav";
-import {MainContent} from "./Profile/Profile";
+import {Profile} from "./Profile/Profile";
 
 const HeaderData = {
     logo: 'https://upload.wikimedia.org/wikipedia/ru/f/f9/Philadelphia_Eagles_primary_logo.png'
@@ -17,31 +17,38 @@ const NavDataTadLink = [
     ]
 
 
-const MainContentData = {
+const ProfileData = {
     content_img: 'https://vjoy.cc/wp-content/uploads/2020/08/bezymyannyjprpapaava.jpg',
-    avatar_img: 'https://bipbap.ru/wp-content/uploads/2017/04/72fqw2qq3kxh.jpg'
+    avatar_img: 'avatar',
+    title_name: 'Username',
+    title_post: 'My Posts',
+    post: [
+            {id: 1, description_post: 'description_post 1'},
+            {id: 2, description_post: 'description_post 2'},
+            {id: 3, description_post: 'description_post 3'},
+            {id: 4, description_post: 'description_post 4'},
+            {id: 5, description_post: 'description_post 5'}
+        ]
+
 
 }
 
 const App = () => {
     return (
         <div className='app-wrapper'>
-            <header className='header'>
-                <Header
+            <Header
                     logo={HeaderData.logo}
-                />
-            </header>
-            <nav className='nav'>
-                <Nav
+            />
+            <Nav
                     array_tab_link={NavDataTadLink}
-                />
-            </nav>
-            <div className='content'>
-                <MainContent
-                    content_img={MainContentData.content_img}
-                    avatar_img={MainContentData.avatar_img}
-                />
-            </div>
+            />
+            <Profile
+                    content_img={ProfileData.content_img}
+                    avatar_img={ProfileData.avatar_img}
+                    title_name={ProfileData.title_name}
+                    title_post={ProfileData.title_post}
+                    description_post={ProfileData.post}
+            />
         </div>
     );
 }

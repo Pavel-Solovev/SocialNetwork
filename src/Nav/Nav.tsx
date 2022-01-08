@@ -1,4 +1,5 @@
 import React from "react";
+import s from './Nav.module.css'
 
 type NavDataTadLink = {
     array_tab_link: Array<TypeLink>
@@ -10,15 +11,15 @@ type TypeLink = {
 }
 
 export const Nav: React.FC<NavDataTadLink> = (props) => {
-    return (<div>
+    return (<nav className={s.nav}>
             {props.array_tab_link.map(m=>{
                 return (
-                    <div>
+                    <div className={s.item}>
                         <a href={m.tab_link}>{m.tab_link}</a>
                     </div>
                 )
             })}
-            </div>
+            </nav>
 
     )
 }
