@@ -12,4 +12,14 @@
     /*grid-gap: 10px;*/
 }
 
+.app-wrapper-content {
+    grid-area: c;
+    background-color: rgba(172, 183, 194, 0.61);
+}
+
+.app-wrapper-content img {
+    width: 600px;
+    background-color: #d0e6ff;
+}
+
 

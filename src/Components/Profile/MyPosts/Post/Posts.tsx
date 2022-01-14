@@ -19,7 +19,7 @@ export const Posts: React.FC<Post_contentType> = (props) => {
             {props.description_post.map(m => {
                     return (
                         <div className={s.item}>
-                            <img src={m.avatar_img}/>
+                            <img src={m.avatar_img} alt={''}/>
                             {m.description_post}
                             <div>
                                 <span>like</span>

@@ -7,7 +7,7 @@ type ButtonType = {
     button_remove: string
 }
 
-const Button = {
+const Button: ButtonType = {
     button_add: 'Add Post',
     button_remove: 'Remove'
 }
@@ -20,7 +20,7 @@ type TypePost = {
 
 type Post_contentType = {
     title_post: string
-    description_post: Array<TypePost>
+    description_post: TypePost[]
 }
 
 
