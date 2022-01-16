@@ -1,13 +1,3 @@
-.profile {
-    grid-area: c;
-    background-color: rgba(172, 183, 194, 0.61);
-}
-
-.profile img {
-    width: 600px;
-    background-color: #d0e6ff;
-}
-
 .avatar {
     width: 100px;
 }

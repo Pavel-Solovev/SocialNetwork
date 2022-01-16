@@ -1,6 +1,7 @@
 import React from "react";
 import s from './Profile.module.css';
 import {MyPosts} from "./MyPosts/MyPosts";
+import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 
 type TypePost = {
@@ -19,12 +20,9 @@ type Main_contentType = {
 
 export const Profile: React.FC<Main_contentType> = (props) => {
     return (<div className={s.profile}>
-            <div>
-                <img src={props.content_img} alt=""/>
-            </div>
-            <div>
-                <p>{props.title_name}</p>
-            </div>
+            <ProfileInfo
+                content_img={props.content_img}
+                title_name={props.title_name} />
             <div>
                 <MyPosts
                     title_post={props.title_post}

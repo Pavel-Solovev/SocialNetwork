@@ -25,19 +25,23 @@ type Post_contentType = {
 
 
 export const MyPosts: React.FC<Post_contentType> = (props) => {
-    return (<div>
-                <p className={s.title}>{props.title_post}</p>
+    return (<div className={s.postsBlock}>
+            <h3><p className={s.title}>{props.title_post}</p></h3>
+            <div>
                 <div>
                     <textarea></textarea>
+                </div>
+                <div>
                     <button>{Button.button_add}</button>
                     <button>{Button.button_remove}</button>
                 </div>
-                    <div className={s.posts}>
-                    <Posts
-                        title_post={props.title_post}
-                        description_post={props.description_post}
-                        />
-                    </div>
+            </div>
+            <div className={s.posts}>
+                <Posts
+                    title_post={props.title_post}
+                    description_post={props.description_post}
+                />
+            </div>
         </div>
     )
 }
