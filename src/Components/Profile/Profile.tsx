@@ -4,10 +4,12 @@ import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 
-type TypePost = {
+export type TypePost = {
     id: number
     description_post: string
     avatar_img: string
+    likesCount: number
+
 }
 
 type Main_contentType = {

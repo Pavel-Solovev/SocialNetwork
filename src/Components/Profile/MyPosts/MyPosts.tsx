@@ -1,6 +1,7 @@
 import React from "react";
 import s from './MyPosts.module.css';
 import {Posts} from "./Post/Posts";
+import {TypePost} from "../Profile";
 
 type ButtonType = {
     button_add: string
@@ -12,13 +13,8 @@ const Button: ButtonType = {
     button_remove: 'Remove'
 }
 
-type TypePost = {
-    id: number
-    description_post: string
-    avatar_img: string
-}
 
-type Post_contentType = {
+export type Post_contentType = {
     title_post: string
     description_post: TypePost[]
 }
