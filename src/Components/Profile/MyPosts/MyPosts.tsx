@@ -1,22 +1,19 @@
 import React from "react";
 import s from './MyPosts.module.css';
 import {Posts} from "./Post/Posts";
-import {TypePost} from "../Profile";
+import {PostType} from "../Profile";
 
 type ButtonType = {
     button_add: string
     button_remove: string
 }
-
 const Button: ButtonType = {
     button_add: 'Add Post',
     button_remove: 'Remove'
 }
-
-
 export type Post_contentType = {
     title_post: string
-    description_post: TypePost[]
+    description_post: PostType[]
 }
 
 

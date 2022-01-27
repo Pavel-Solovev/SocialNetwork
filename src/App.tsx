@@ -15,35 +15,35 @@ type PostType = {
     likesCount: number
     avatar_img:string
 }
-
 type ProfileDataType = {
     content_img:string
     title_name:string
     title_post:string
     post: PostType[]
 }
-
 type dialog = {
     id?: number
     name: string
 }
-
-
 type message = {
     id?: number
     message: string
 }
-
-
+type DialogPageType = {
+    messagesData: message[]
+    dialogsData: dialog[]
+}
 type AppPropsType = {
-    ProfileData: ProfileDataType
-    messageData: message[]
-    dialogData: dialog[]
+    profilePage: ProfileDataType
+    dialogPage: DialogPageType
+}
+type state = {
+    state:AppPropsType
 }
 
 
 
-const App = (props: AppPropsType) => {
+const App = (props: state) => {
     return (
         <div className='app-wrapper'>
 
@@ -53,15 +53,11 @@ const App = (props: AppPropsType) => {
             <div className={'app-wrapper-content'}>
                 <Routes>
                     <Route path='/Profile' element={<Profile
-                        content_img={props.ProfileData.content_img}
-                        title_name={props.ProfileData.title_name}
-                        title_post={props.ProfileData.title_post}
-                        description_post={props.ProfileData.post}
+                        profilePage={props.state.profilePage}
                     />}
                     />
                     <Route path='/Messages/*' element={<Dialogs
-                        dialogs={props.dialogData}
-                        message={props.messageData}
+                        dialogPage={props.state.dialogPage}
                     />}
                     />
                     <Route path='/News/*' element={<News/>}/>

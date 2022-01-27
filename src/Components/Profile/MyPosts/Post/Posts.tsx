@@ -1,11 +1,11 @@
 import React from "react";
 import s from './Posts.module.css';
-import {TypePost} from "../../Profile";
+import {PostType} from "../../Profile";
 
 
 type Post_contentType = {
     title_post: string
-    description_post: Array<TypePost>
+    description_post: Array<PostType>
 }
 
 

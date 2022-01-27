@@ -16,15 +16,19 @@ type message = {
     message: string
 }
 
-type DialogsPropType = {
-    dialogs:dialog[]
-    message:message[]
+type DialogDataType = {
+    dialogsData:dialog[]
+    messagesData:message[]
 }
 
-export const Dialogs:React.FC<DialogsPropType> = (props) => {
+type dialogData = {
+    dialogPage: DialogDataType
+}
+
+export const Dialogs:React.FC<dialogData> = (props) => {
     return (
         <div className={s.dialogs}>
-            <DialogItem DialogData={props.dialogs}/>
-            <Message MessageData={props.message}/>
+            <DialogItem DialogData={props.dialogPage.dialogsData}/>
+            <Message MessageData={props.dialogPage.messagesData}/>
         </div>)
 }
