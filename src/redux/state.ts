@@ -1,8 +1,10 @@
+import {renderTree} from "../renderTree";
+
 type PostType = {
-    id:number
-    description_post:string
+    id: number
+    description_post: string
     likesCount: number
-    avatar_img:string
+    avatar_img: string
 }
 
 type ProfileDataType = {
@@ -10,6 +12,7 @@ type ProfileDataType = {
     title_name: string
     title_post: string
     post: PostType[]
+    newPostChange:string
 }
 
 type DialogsDataType = {
@@ -27,10 +30,28 @@ type DialogPageType = {
     messagesData: MessagesDataType[]
 }
 
-type RootStateType = {
+export type RootStateType = {
     profilePage: ProfileDataType
     dialogPage: DialogPageType
 }
+
+export const addPost = (postText: string) => {
+    const newPost: PostType = {
+        id: new Date().getTime(),
+        description_post: postText,
+        likesCount: 0,
+        avatar_img: 'https://vjoy.cc/wp-content/uploads/2020/08/bezymyannyjprpapaava.jpg'
+    }
+    state.profilePage.post.push(newPost)
+    renderTree(state)
+}
+
+export const upgradeNewPostText = (newText: string) => {
+    state.profilePage.newPostChange = newText
+    renderTree(state)
+}
+
+
 
 export let state: RootStateType = {
     profilePage: {
@@ -68,7 +89,8 @@ export let state: RootStateType = {
                 likesCount: 3,
                 avatar_img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9knn6xg6FC1bl3qY7kXfunQkJ4hfspy27Qg&usqp=CAU'
             }
-        ]
+        ],
+        newPostChange: '',
     },
     dialogPage: {
         dialogsData: [
@@ -87,5 +109,4 @@ export let state: RootStateType = {
             {id: 5, message: '*smile*'},
         ]
     }
-
 }

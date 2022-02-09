@@ -4,6 +4,7 @@ import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 
+
 export type PostType = {
     id: number
     description_post: string
@@ -17,10 +18,14 @@ type profileDataType = {
     title_name: string
     title_post: string
     post: Array<PostType>
+    newPostChange:string
+
 }
 
 type ProfileData = {
     profilePage: profileDataType
+    addPostCallback: (postText:string) => void
+    upgradeNewPostText: (newText:string)=>void
 }
 
 export const Profile: React.FC<ProfileData> = (props) => {
@@ -30,8 +35,11 @@ export const Profile: React.FC<ProfileData> = (props) => {
                 title_name={props.profilePage.title_name} />
             <div>
                 <MyPosts
+                    newPostChange={props.profilePage.newPostChange}
                     title_post={props.profilePage.title_post}
                     description_post={props.profilePage.post}
+                    addPostCallback={props.addPostCallback}
+                    changeNewTextCallback={props.upgradeNewPostText}
                     />
             </div>
         </div>

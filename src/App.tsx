@@ -8,6 +8,7 @@ import {Route, Routes} from 'react-router-dom';
 import {Music} from "./Components/Music/Music";
 import {News} from "./Components/News/New";
 import {Settings} from "./Components/Settings/Settings";
+import {addPost, upgradeNewPostText} from "./redux/state";
 
 type PostType = {
     id:number
@@ -20,6 +21,7 @@ type ProfileDataType = {
     title_name:string
     title_post:string
     post: PostType[]
+    newPostChange:string
 }
 type dialog = {
     id?: number
@@ -39,6 +41,7 @@ type AppPropsType = {
 }
 type state = {
     state:AppPropsType
+
 }
 
 
@@ -53,7 +56,8 @@ const App = (props: state) => {
             <div className={'app-wrapper-content'}>
                 <Routes>
                     <Route path='/Profile' element={<Profile
-                        profilePage={props.state.profilePage}
+                        profilePage={props.state.profilePage} addPostCallback={addPost}
+                        upgradeNewPostText={upgradeNewPostText}
                     />}
                     />
                     <Route path='/Messages/*' element={<Dialogs
