@@ -3,6 +3,7 @@ import s from './Profile.module.css';
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {ActionsTypes} from "../../redux/state";
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 
 
@@ -36,7 +37,7 @@ export const Profile: React.FC<ProfileData> = (props) => {
                 content_img={props.profilePage.content_img}
                 title_name={props.profilePage.title_name} />
             <div>
-                <MyPosts
+                <MyPostsContainer
                     newPostChange={props.profilePage.newPostChange}
                     title_post={props.profilePage.title_post}
                     description_post={props.profilePage.post}

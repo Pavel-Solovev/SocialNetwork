@@ -2,8 +2,6 @@ import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css';
 import {Posts} from "./Post/Posts";
 import {PostType} from "../Profile";
-import {ActionsTypes} from "../../../redux/state";
-import {addPostAC, changeNewTextAC} from "../../../redux/profile-reducer";
 
 type ButtonType = {
     button_add: string
@@ -13,47 +11,45 @@ const Button: ButtonType = {
     button_add: 'Add Post',
     button_remove: 'Remove'
 }
-export type Post_contentType = {
+export type MyPosts_contentType = {
+    addPostCallback: ()=> void
+    changeNewTextCallback: (newText:string)=>void
+    newPostChange: string
     title_post: string
     description_post: PostType[]
-    // addPostCallback: (postText:string)=> void
-    newPostChange: string
-    // changeNewTextCallback: (newText:string)=>void
-    dispatch: (action:ActionsTypes) => void
 }
 
 
-export const MyPosts: React.FC<Post_contentType> = (props) => {
+export const MyPosts = (props: MyPosts_contentType) => {
 
     const addPost = () => {
         // alert(newPostElement.current?.value);
-        // props.addPostCallback(props.newPostChange)
-        props.dispatch(addPostAC())
+        props.addPostCallback()
 
     }
 
-    const onPostChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        // props.changeNewTextCallback(e.currentTarget.value);
-        props.dispatch(changeNewTextAC(e.currentTarget.value))
-            }
+    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.changeNewTextCallback(e.currentTarget.value);
+    }
 
-    return (<div className={s.postsBlock}>
-            <h3><p className={s.title}>{props.title_post}</p></h3>
-            <div>
+        return (<div className={s.postsBlock}>
+                <h3><p className={s.title}>{props.title_post}</p></h3>
                 <div>
-                    <textarea value={props.newPostChange} onChange={onPostChange}/>
+                    <div>
+                        <textarea value={props.newPostChange} onChange={onPostChange}/>
+                    </div>
+                    <div>
+                        <button onClick={addPost}>{Button.button_add}</button>
+                        <button>{Button.button_remove}</button>
+                    </div>
                 </div>
-                <div>
-                    <button onClick={ addPost}>{Button.button_add}</button>
-                    <button>{Button.button_remove}</button>
+                <div className={s.posts}>
+                    <Posts
+                        title_post={props.title_post}
+                        description_post={props.description_post}
+                    />
                 </div>
             </div>
-            <div className={s.posts}>
-                <Posts
-                    title_post={props.title_post}
-                    description_post={props.description_post}
-                />
-            </div>
-        </div>
-    )
+        )
+
 }

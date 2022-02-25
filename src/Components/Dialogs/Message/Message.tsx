@@ -11,19 +11,20 @@ type message = {
 type MessageData = {
     MessageData: message[]
     newMessageChange: string
-    dispatch: (action:ActionsTypes) => void
+    onCallbackMessageChange: (title:string)=> void
+    onCallbackAddMessage: ()=> void
 }
 
 export const Message: React.FC<MessageData> = (props) => {
     const NewMessageText = React.useRef<HTMLTextAreaElement>(null)
 
     const onMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(ChangeNewMessageAC(e.currentTarget.value))
+        props.onCallbackMessageChange(e.currentTarget.value)
 
     }
 
     const addMessage = () => {
-       props.dispatch(addMessageAC())
+       props.onCallbackAddMessage()
     }
 
 

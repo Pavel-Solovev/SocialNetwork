@@ -3,6 +3,7 @@ import s from './Dialogs.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {ActionsTypes} from "../../redux/state";
+import {MessageContainer} from "./Message/MessageContainer";
 
 
 
@@ -32,7 +33,7 @@ export const Dialogs:React.FC<dialogData> = (props) => {
     return (
         <div className={s.dialogs}>
             <DialogItem DialogData={props.dialogPage.dialogsData}/>
-            <Message MessageData={props.dialogPage.messagesData}
+            <MessageContainer MessageData={props.dialogPage.messagesData}
                      newMessageChange={props.dialogPage.newMessageChange}
                      dispatch={props.dispatch}/>
         </div>)
