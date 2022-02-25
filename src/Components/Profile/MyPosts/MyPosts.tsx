@@ -2,6 +2,8 @@ import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css';
 import {Posts} from "./Post/Posts";
 import {PostType} from "../Profile";
+import {ActionsTypes} from "../../../redux/state";
+import {addPostAC, changeNewTextAC} from "../../../redux/profile-reducer";
 
 type ButtonType = {
     button_add: string
@@ -14,9 +16,10 @@ const Button: ButtonType = {
 export type Post_contentType = {
     title_post: string
     description_post: PostType[]
-    addPostCallback: (postText:string)=> void
+    // addPostCallback: (postText:string)=> void
     newPostChange: string
-    changeNewTextCallback: (newText:string)=>void
+    // changeNewTextCallback: (newText:string)=>void
+    dispatch: (action:ActionsTypes) => void
 }
 
 
@@ -24,11 +27,14 @@ export const MyPosts: React.FC<Post_contentType> = (props) => {
 
     const addPost = () => {
         // alert(newPostElement.current?.value);
-        props.addPostCallback(props.newPostChange)
+        // props.addPostCallback(props.newPostChange)
+        props.dispatch(addPostAC())
+
     }
 
     const onPostChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        props.changeNewTextCallback(e.currentTarget.value);
+        // props.changeNewTextCallback(e.currentTarget.value);
+        props.dispatch(changeNewTextAC(e.currentTarget.value))
             }
 
     return (<div className={s.postsBlock}>
