@@ -1,7 +1,5 @@
 import React, {ChangeEvent} from 'react';
 import s from "../Dialogs.module.css";
-import {ActionsTypes} from "../../../redux/state";
-import {addMessageAC, ChangeNewMessageAC} from "../../../redux/dialogs-reducer";
 
 type message = {
     id?: number

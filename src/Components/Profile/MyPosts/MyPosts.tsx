@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css';
 import {Posts} from "./Post/Posts";
-import {PostType} from "../Profile";
+import {StoreType} from "../../../redux/redux-store";
 
 type ButtonType = {
     button_add: string
@@ -11,19 +11,18 @@ const Button: ButtonType = {
     button_add: 'Add Post',
     button_remove: 'Remove'
 }
-export type MyPosts_contentType = {
+
+type PropsType = {
     addPostCallback: ()=> void
     changeNewTextCallback: (newText:string)=>void
-    newPostChange: string
-    title_post: string
-    description_post: PostType[]
+    store: StoreType
 }
 
+export const MyPosts = (props: PropsType) => {
 
-export const MyPosts = (props: MyPosts_contentType) => {
+    const store = props.store.getState()
 
     const addPost = () => {
-        // alert(newPostElement.current?.value);
         props.addPostCallback()
 
     }
@@ -33,10 +32,10 @@ export const MyPosts = (props: MyPosts_contentType) => {
     }
 
         return (<div className={s.postsBlock}>
-                <h3><p className={s.title}>{props.title_post}</p></h3>
+                <h3><p className={s.title}>{store.profilePage.title_name}</p></h3>
                 <div>
                     <div>
-                        <textarea value={props.newPostChange} onChange={onPostChange}/>
+                        <textarea value={store.profilePage.newPostChange} onChange={onPostChange}/>
                     </div>
                     <div>
                         <button onClick={addPost}>{Button.button_add}</button>
@@ -45,8 +44,8 @@ export const MyPosts = (props: MyPosts_contentType) => {
                 </div>
                 <div className={s.posts}>
                     <Posts
-                        title_post={props.title_post}
-                        description_post={props.description_post}
+                        title_post={store.profilePage.title_post}
+                        description_post={store.profilePage.post}
                     />
                 </div>
             </div>

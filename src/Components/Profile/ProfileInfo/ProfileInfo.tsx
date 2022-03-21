@@ -1,19 +1,20 @@
 import React from "react";
 import s from './ProfileInfo.module.css';
+import {StoreType} from "../../../redux/redux-store";
 
-type Main_contentType = {
-    content_img: string
-    title_name: string
+type PropsType = {
+    store: StoreType
 }
 
-export const ProfileInfo: React.FC<Main_contentType> = (props) => {
+export const ProfileInfo: React.FC<PropsType> = (props) => {
+    const store = props.store.getState()
     return (
         <div className={s.profile}>
             <div>
-                <img src={props.content_img} alt=""/>
+                <img src={store.profilePage.content_img} alt=""/>
             </div>
-            <div className={'s.desctiptionBlock'}>
-                <p>{props.title_name}</p>
+            <div className={s.desctiptionBlock}>
+                <p>{store.profilePage.title_name}</p>
             </div>
         </div>
     )

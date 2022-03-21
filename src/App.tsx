@@ -9,7 +9,6 @@ import {Music} from "./Components/Music/Music";
 import {News} from "./Components/News/New";
 import {Settings} from "./Components/Settings/Settings";
 import {StoreType} from "./redux/redux-store";
-// import {AppStateType} from "./redux/redux-store";
 
 
 type PropsType = {
@@ -17,7 +16,6 @@ type PropsType = {
 }
 
 const App: React.FC<PropsType> = (props) => {
-    const state = props.store.getState()
     return (
         <div className='app-wrapper'>
 
@@ -27,13 +25,11 @@ const App: React.FC<PropsType> = (props) => {
             <div className={'app-wrapper-content'}>
                 <Routes>
                     <Route path='/Profile' element={<Profile
-                        profilePage={state.profilePage}
-                        dispatch={props.store.dispatch.bind(props.store)}
+                        store={props.store}
                     />}
                     />
                     <Route path='/Messages/*' element={<Dialogs
-                        dialogPage={state.dialogPage}
-                        dispatch={props.store.dispatch.bind(props.store)}
+                        store={props.store}
                     />}
                     />
                     <Route path='/News/*' element={<News/>}/>

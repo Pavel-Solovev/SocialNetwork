@@ -1,34 +1,30 @@
-import React, {ChangeEvent} from "react";
-import s from './MyPosts.module.css';
-import {Posts} from "./Post/Posts";
-import {PostType} from "../Profile";
-import {ActionsTypes} from "../../../redux/state";
+import React from "react";
 import {addPostAC, changeNewTextAC} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
+import {StoreType} from "../../../redux/redux-store";
 
-export type Post_contentType = {
-    title_post: string
-    description_post: PostType[]
-    newPostChange: string
-    dispatch: (action:ActionsTypes) => void
+
+
+type PropsType = {
+    store: StoreType
 }
 
 
-export const MyPostsContainer: React.FC<Post_contentType> = (props) => {
+
+export const MyPostsContainer: React.FC<PropsType> = (props) => {
 
     const addPost = () => {
-        props.dispatch(addPostAC())
+        props.store.dispatch(addPostAC())
 
     }
 
     const onPostChange = (title:string) => {
-        props.dispatch(changeNewTextAC(title))
+        props.store.dispatch(changeNewTextAC(title))
             }
 
     return (<MyPosts addPostCallback={addPost}
                      changeNewTextCallback={onPostChange}
-                     newPostChange={props.newPostChange}
-                     title_post={props.title_post}
-                     description_post={props.description_post}/>
+                     store ={props.store}
+        />
     )
 }
