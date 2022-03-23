@@ -1,5 +1,5 @@
-import {PostType} from "../Components/Profile/Profile";
-import {ActionsTypes, ProfileDataType} from "./state";
+
+import {ActionsTypes, PostType, ProfileDataType} from "./state";
 
 let initialState = {
     content_img: 'https://vjoy.cc/wp-content/uploads/2020/08/bezymyannyjprpapaava.jpg',

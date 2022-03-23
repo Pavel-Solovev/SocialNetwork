@@ -10,12 +10,7 @@ import {News} from "./Components/News/New";
 import {Settings} from "./Components/Settings/Settings";
 import {StoreType} from "./redux/redux-store";
 
-
-type PropsType = {
-    store: StoreType
-}
-
-const App: React.FC<PropsType> = (props) => {
+const App = () => {
     return (
         <div className='app-wrapper'>
 
@@ -25,11 +20,9 @@ const App: React.FC<PropsType> = (props) => {
             <div className={'app-wrapper-content'}>
                 <Routes>
                     <Route path='/Profile' element={<Profile
-                        store={props.store}
                     />}
                     />
                     <Route path='/Messages/*' element={<Dialogs
-                        store={props.store}
                     />}
                     />
                     <Route path='/News/*' element={<News/>}/>

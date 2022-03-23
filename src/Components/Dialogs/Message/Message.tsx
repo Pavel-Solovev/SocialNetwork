@@ -1,13 +1,11 @@
 import React, {ChangeEvent} from 'react';
 import s from "../Dialogs.module.css";
+import {DialogItem} from "../DialogItem/DialogItem";
+import {DialogPageType} from "../../../redux/state";
 
-type message = {
-    id?: number
-    message: string
-}
 
 type MessageData = {
-    MessageData: message[]
+    messageData: DialogPageType
     newMessageChange: string
     onCallbackMessageChange: (title:string)=> void
     onCallbackAddMessage: ()=> void
@@ -27,8 +25,12 @@ export const Message: React.FC<MessageData> = (props) => {
 
 
     return (
+        <>
+        <div>
+            <DialogItem DialogsDataType={props.messageData.dialogsData}/>
+        </div>
         <div className={s.message}>
-            {props.MessageData.map(m => {
+            {props.messageData.messagesData.map(m => {
                 return (<div>
                     <div>{m.message}</div>
                 </div>)
@@ -41,5 +43,6 @@ export const Message: React.FC<MessageData> = (props) => {
                 <button onClick={addMessage}>addMessage</button>
             </div>
         </div>
+        </>
     )
 }

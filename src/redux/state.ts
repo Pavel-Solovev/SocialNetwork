@@ -2,7 +2,7 @@ import {ProfileActionsTypes, ProfileReducer} from "./profile-reducer";
 import {DialogsReducer, MessageActionsTypes} from "./dialogs-reducer";
 import {SidebarReducer} from "./sidebar-reducer";
 
-type PostType = {
+export type PostType = {
     id: number
     description_post: string
     likesCount: number
@@ -17,7 +17,7 @@ export type ProfileDataType = {
     newPostChange: string
 }
 
-type DialogsDataType = {
+export type DialogsDataType = {
     id?: number
     name: string
 }

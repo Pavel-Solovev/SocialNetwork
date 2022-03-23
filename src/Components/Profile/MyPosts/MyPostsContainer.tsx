@@ -1,30 +1,25 @@
-import React from "react";
 import {addPostAC, changeNewTextAC} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
-import {StoreType} from "../../../redux/redux-store";
+import {connect} from "react-redux";
+import {RootStateType} from "../../../redux/state";
 
-
-
-type PropsType = {
-    store: StoreType
-}
-
-
-
-export const MyPostsContainer: React.FC<PropsType> = (props) => {
-
-    const addPost = () => {
-        props.store.dispatch(addPostAC())
-
+const mapStateToProps = (state: RootStateType) => {
+    return {
+        store: state.profilePage
     }
-
-    const onPostChange = (title:string) => {
-        props.store.dispatch(changeNewTextAC(title))
-            }
-
-    return (<MyPosts addPostCallback={addPost}
-                     changeNewTextCallback={onPostChange}
-                     store ={props.store}
-        />
-    )
 }
+
+const mapDispatchToProps = (dispatch:any) => {
+    return {
+        addPostCallback: () => {
+            dispatch(addPostAC());
+        },
+        changeNewTextCallback: (title:string) => {
+            dispatch(changeNewTextAC(title));
+        }
+    }
+}
+
+export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+
+

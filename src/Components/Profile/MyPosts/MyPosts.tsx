@@ -2,6 +2,8 @@ import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css';
 import {Posts} from "./Post/Posts";
 import {StoreType} from "../../../redux/redux-store";
+import {ProfileInfo} from "../ProfileInfo/ProfileInfo";
+import {ProfileDataType} from "../../../redux/state";
 
 type ButtonType = {
     button_add: string
@@ -13,14 +15,12 @@ const Button: ButtonType = {
 }
 
 type PropsType = {
-    addPostCallback: ()=> void
-    changeNewTextCallback: (newText:string)=>void
-    store: StoreType
+    addPostCallback: () => void
+    changeNewTextCallback: (newText: string) => void
+    store: ProfileDataType
 }
 
 export const MyPosts = (props: PropsType) => {
-
-    const store = props.store.getState()
 
     const addPost = () => {
         props.addPostCallback()
@@ -31,11 +31,15 @@ export const MyPosts = (props: PropsType) => {
         props.changeNewTextCallback(e.currentTarget.value);
     }
 
-        return (<div className={s.postsBlock}>
-                <h3><p className={s.title}>{store.profilePage.title_name}</p></h3>
+    return (<>
+            <div>
+            <ProfileInfo store={props.store}/>
+            </div>
+            <div className={s.postsBlock}>
+                <h3><p className={s.title}>{props.store.title_name}</p></h3>
                 <div>
                     <div>
-                        <textarea value={store.profilePage.newPostChange} onChange={onPostChange}/>
+                        <textarea value={props.store.newPostChange} onChange={onPostChange}/>
                     </div>
                     <div>
                         <button onClick={addPost}>{Button.button_add}</button>
@@ -44,11 +48,12 @@ export const MyPosts = (props: PropsType) => {
                 </div>
                 <div className={s.posts}>
                     <Posts
-                        title_post={store.profilePage.title_post}
-                        description_post={store.profilePage.post}
+                        title_post={props.store.title_post}
+                        description_post={props.store.post}
                     />
                 </div>
             </div>
-        )
+        </>
+    )
 
 }

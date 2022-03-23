@@ -1,32 +1,28 @@
-import React from 'react';
-import {ActionsTypes} from "../../../redux/state";
 import {addMessageAC, ChangeNewMessageAC} from "../../../redux/dialogs-reducer";
 import {Message} from "./Message";
-import {StoreType} from "../../../redux/redux-store";
+import {connect} from "react-redux";
+import {RootStateType} from "../../../redux/state";
 
-type PropsType = {
-    store:StoreType
-    dispatch: (action:ActionsTypes) => void
+
+const mapStateToProps = (state: RootStateType) => {
+    return {
+        messageData: state.dialogPage,
+        newMessageChange: state.dialogPage.newMessageChange
+    }
 }
 
-
-export const MessageContainer: React.FC<PropsType> = (props) => {
-
-    const store = props.store.getState()
-
-    const onMessageChange = (title:string) => {
-        props.dispatch(ChangeNewMessageAC(title))
-
+const mapDispatchToProps = (dispatch: any) => {
+    debugger
+    return {
+        onCallbackMessageChange: (title:string) => {
+            dispatch(ChangeNewMessageAC(title));
+        },
+        onCallbackAddMessage: () => {
+            dispatch(addMessageAC());
+        }
     }
-
-    const addMessage = () => {
-       props.dispatch(addMessageAC())
-    }
-
-
-    return (<Message MessageData={store.dialogPage.messagesData}
-                     newMessageChange={store.dialogPage.newMessageChange}
-                     onCallbackMessageChange={onMessageChange}
-                     onCallbackAddMessage={addMessage}/>
-    )
 }
+
+export const MessageContainer = connect(mapStateToProps, mapDispatchToProps)(Message);
+
+
