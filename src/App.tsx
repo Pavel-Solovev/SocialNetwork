@@ -8,7 +8,7 @@ import {Route, Routes} from 'react-router-dom';
 import {Music} from "./Components/Music/Music";
 import {News} from "./Components/News/New";
 import {Settings} from "./Components/Settings/Settings";
-import {StoreType} from "./redux/redux-store";
+import {Users} from "./Components/Users/Users";
 
 const App = () => {
     return (
@@ -19,17 +19,13 @@ const App = () => {
 
             <div className={'app-wrapper-content'}>
                 <Routes>
-                    <Route path='/Profile' element={<Profile
-                    />}
-                    />
-                    <Route path='/Messages/*' element={<Dialogs
-                    />}
-                    />
+                    <Route path='/Profile' element={<Profile/>}/>
+                    <Route path='/Messages/*' element={<Dialogs/>}/>
+                    <Route path='/Users/*' element={<Users/>}/>
                     <Route path='/News/*' element={<News/>}/>
                     <Route path='/Music/*' element={<Music/>}/>
                     <Route path='/Settings/*' element={<Settings/>}/>
                 </Routes>
-
             </div>
         </div>
 

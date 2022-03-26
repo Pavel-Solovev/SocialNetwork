@@ -18,7 +18,7 @@ export const Navbar = () => {
     return (<nav className={s.nav}>
             {NavDataTadLink.map(m=>{
                 return (
-                    <div className={s.item}>
+                    <div key={m.id} className={s.item}>
                         <NavLink to={`/${m.tab_link}`} className={navData => navData.isActive? s.active : s.item }>{m.tab_link}</NavLink>
                     </div>
                 )

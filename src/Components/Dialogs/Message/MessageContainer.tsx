@@ -12,7 +12,6 @@ const mapStateToProps = (state: RootStateType) => {
 }
 
 const mapDispatchToProps = (dispatch: any) => {
-    debugger
     return {
         onCallbackMessageChange: (title:string) => {
             dispatch(ChangeNewMessageAC(title));

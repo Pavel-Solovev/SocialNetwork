@@ -60,7 +60,6 @@ export const changeNewTextAC = (newText: string) => {
 
 
 export const ProfileReducer = (state: ProfileDataType = initialState, action: ActionsTypes) => {
-    debugger
     switch (action.type) {
         case 'ADD-POST': {
             const newPost: PostType = {
@@ -72,16 +71,18 @@ export const ProfileReducer = (state: ProfileDataType = initialState, action: Ac
             if (state.newPostChange.trim() === '') {
                 return state;
             } else {
-                let CopyState = {...state, post: [...state.post]}
-                CopyState.post.push(newPost)
-                CopyState.newPostChange = ''
-                return CopyState;
+                return {
+                    ...state,
+                    post: [...state.post, newPost],
+                    newPostChange: ''
+                };
             }
         }
         case 'CHANGE-NEW-TEXT': {
-            let CopyState = {...state}
-            CopyState.newPostChange = action.payload
-            return CopyState;
+            return {
+                ...state,
+                newPostChange: action.payload
+            };
         }
         default:
             return state

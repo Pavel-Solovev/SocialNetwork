@@ -13,7 +13,7 @@ const HeaderData: HeaderType = {
 export const Header = () => {
     return (
         <div className={s.header}>
-            <img src={HeaderData.logo}/>
+            <img src={HeaderData.logo} alt={'123'}/>
         </div>
     )
 }

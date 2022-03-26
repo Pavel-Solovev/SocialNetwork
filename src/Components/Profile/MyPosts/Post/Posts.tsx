@@ -13,7 +13,7 @@ export const Posts: React.FC<Post_contentType> = (props) => {
     return (<div>
             {props.description_post.map(m => {
                     return (
-                        <div className={s.item}>
+                        <div key={m.id} className={s.item}>
                             <img src={m.avatar_img} alt={''}/>
                             {m.description_post}
                             <div>

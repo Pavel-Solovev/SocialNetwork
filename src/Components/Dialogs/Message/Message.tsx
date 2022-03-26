@@ -31,7 +31,7 @@ export const Message: React.FC<MessageData> = (props) => {
         </div>
         <div className={s.message}>
             {props.messageData.messagesData.map(m => {
-                return (<div>
+                return (<div key={m.id}>
                     <div>{m.message}</div>
                 </div>)
             })
