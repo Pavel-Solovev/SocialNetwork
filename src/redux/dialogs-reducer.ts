@@ -44,13 +44,15 @@ export const DialogsReducer = (state:DialogPageType = initialState, action: Acti
                 id: new Date().getTime()!,
                 message: state.newMessageChange
             }
-            state.messagesData.push(newMessage)
-            state.newMessageChange = ''
-            return state;
+            let CopyState = {...state, messagesData: [...state.messagesData]}
+            CopyState.messagesData.push(newMessage)
+            CopyState.newMessageChange = ''
+            return CopyState;
         }
         case ('CHANGE-NEW-MESSAGE'): {
-            state.newMessageChange = action.newText
-            return state;
+            let CopySate = {...state}
+            CopySate.newMessageChange = action.newText
+            return CopySate;
         }
 
         default:

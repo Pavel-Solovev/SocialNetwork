@@ -72,14 +72,16 @@ export const ProfileReducer = (state: ProfileDataType = initialState, action: Ac
             if (state.newPostChange.trim() === '') {
                 return state;
             } else {
-                state.post.push(newPost)
-                state.newPostChange = ''
-                return state;
+                let CopyState = {...state, post: [...state.post]}
+                CopyState.post.push(newPost)
+                CopyState.newPostChange = ''
+                return CopyState;
             }
         }
         case 'CHANGE-NEW-TEXT': {
-            state.newPostChange = action.payload
-            return state;
+            let CopyState = {...state}
+            CopyState.newPostChange = action.payload
+            return CopyState;
         }
         default:
             return state
