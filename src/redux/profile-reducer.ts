@@ -1,5 +1,5 @@
+import {ActionsTypes} from "./redux-store";
 
-import {ActionsTypes, PostType, ProfileDataType} from "./state";
 
 let initialState = {
     content_img: 'https://vjoy.cc/wp-content/uploads/2020/08/bezymyannyjprpapaava.jpg',
@@ -41,6 +41,10 @@ let initialState = {
 
 }
 
+export type ProfileDataType = typeof initialState
+
+export type PostType = typeof initialState.post[0]
+
 export type ProfileActionsTypes = ReturnType<typeof addPostAC> |
     ReturnType<typeof changeNewTextAC>
 
@@ -54,7 +58,7 @@ export const addPostAC = () => {
 export const changeNewTextAC = (newText: string) => {
     return {
         type: 'CHANGE-NEW-TEXT',
-        payload: newText
+        newText: newText
     } as const
 }
 
@@ -81,7 +85,7 @@ export const ProfileReducer = (state: ProfileDataType = initialState, action: Ac
         case 'CHANGE-NEW-TEXT': {
             return {
                 ...state,
-                newPostChange: action.payload
+                newPostChange: action.newText
             };
         }
         default:

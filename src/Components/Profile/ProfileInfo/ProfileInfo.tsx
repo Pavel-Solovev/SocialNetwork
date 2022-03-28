@@ -1,7 +1,6 @@
 import React from "react";
 import s from './ProfileInfo.module.css';
-import {StoreType} from "../../../redux/redux-store";
-import {ProfileDataType} from "../../../redux/state";
+import {ProfileDataType} from "../../../redux/profile-reducer";
 
 type PropsType = {
     store: ProfileDataType

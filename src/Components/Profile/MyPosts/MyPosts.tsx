@@ -1,9 +1,8 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css';
 import {Posts} from "./Post/Posts";
-import {StoreType} from "../../../redux/redux-store";
 import {ProfileInfo} from "../ProfileInfo/ProfileInfo";
-import {ProfileDataType} from "../../../redux/state";
+import {ProfileDataType} from "../../../redux/profile-reducer";
 
 type ButtonType = {
     button_add: string

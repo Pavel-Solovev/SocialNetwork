@@ -1,11 +1,12 @@
 import {addPostAC, changeNewTextAC} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
-import {RootStateType} from "../../../redux/state";
+import {StoreType} from "../../../redux/redux-store";
 
-const mapStateToProps = (state: RootStateType) => {
+const mapStateToProps = (state: StoreType) => {
+    const store = state.getState()
     return {
-        store: state.profilePage
+        store: store.profilePage
     }
 }
 

@@ -1,4 +1,4 @@
-import {ActionsTypes, DialogPageType, MessagesDataType} from "./state";
+import {ActionsTypes} from "./redux-store";
 
 let initialState = {
         dialogsData: [
@@ -19,6 +19,12 @@ let initialState = {
         newMessageChange: ''
 
 }
+
+export type DialogPageType = typeof initialState
+
+export type DialogDataType = typeof initialState.dialogsData[0]
+
+export type MessagesDataType = typeof initialState.messagesData[0]
 
 export type MessageActionsTypes =
     ReturnType<typeof addMessageAC> |

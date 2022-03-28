@@ -1,58 +1,73 @@
 import {ProfileActionsTypes, ProfileReducer} from "./profile-reducer";
 import {DialogsReducer, MessageActionsTypes} from "./dialogs-reducer";
 import {SidebarReducer} from "./sidebar-reducer";
+import {UsersActionsTypes} from "./users-reducer";
 
-export type PostType = {
-    id: number
-    description_post: string
-    likesCount: number
-    avatar_img: string
-}
+// export type PostType = {
+//     id: number
+//     description_post: string
+//     likesCount: number
+//     avatar_img: string
+// }
+//
+// export type ProfileDataType = {
+//     content_img: string
+//     title_name: string
+//     title_post: string
+//     post: PostType[]
+//     newPostChange: string
+// }
+//
+// export type DialogsDataType = {
+//     id?: number
+//     name: string
+// }
+//
+// export type MessagesDataType = {
+//     id?: number
+//     message: string
+// }
+//
+// export type DialogPageType = {
+//     dialogsData: DialogsDataType[]
+//     messagesData: MessagesDataType[]
+//     newMessageChange: string
+// }
+//
+// export type RootStateType = {
+//     profilePage: ProfileDataType
+//     dialogPage: DialogPageType
+//     sidebar: Array<string>
+// }
+//
+// export type StoreType = {
+//     _state: RootStateType
+//     _renderTree: () => void
+//     subscribe: (observer: () => void) => void
+//     getState: () => RootStateType
+//     dispatch: (action: ActionsTypes) => void
+// }
+//
+// export type UsersType = {
+//     user_id: number
+//     fullName: string
+//     followed: boolean
+//     status: string
+//     location: {
+//         city: string
+//         country: string
+//     }
+// }
 
-export type ProfileDataType = {
-    content_img: string
-    title_name: string
-    title_post: string
-    post: PostType[]
-    newPostChange: string
-}
-
-export type DialogsDataType = {
-    id?: number
-    name: string
-}
-
-export type MessagesDataType = {
-    id?: number
-    message: string
-}
-
-export type DialogPageType = {
-    dialogsData: DialogsDataType[]
-    messagesData: MessagesDataType[]
-    newMessageChange: string
-}
-
-export type RootStateType = {
-    profilePage: ProfileDataType
-    dialogPage: DialogPageType
-    sidebar: Array<string>
-}
-
-export type StoreType = {
-    _state: RootStateType
-    _renderTree: () => void
-    subscribe: (observer: () => void) => void
-    getState: () => RootStateType
-    dispatch: (action: ActionsTypes) => void
-}
-
-export type ActionsTypes = ProfileActionsTypes | MessageActionsTypes
+// export type UsersDataType = {
+//     users: UsersType[]
+// }
 
 
 
 
-export const store: StoreType = {
+
+const store = {
     _state: {
         profilePage: {
             content_img: 'https://vjoy.cc/wp-content/uploads/2020/08/bezymyannyjprpapaava.jpg',
@@ -115,18 +130,18 @@ export const store: StoreType = {
     _renderTree() {
         console.log('State changed')
     },
-    subscribe(observer) {
-        this.subscribe = observer
-
-    },
-    getState() {
-        return this._state
-    },
-    dispatch(action) {
-        ProfileReducer(this._state.profilePage, action)
-        DialogsReducer(this._state.dialogPage, action)
-        SidebarReducer(this._state.sidebar, action)
-        this._renderTree()
-
-    }
+    // subscribe(observer) {
+    //     this.subscribe = observer
+    //
+    // },
+    // getState() {
+    //     return this._state
+    // },
+    // dispatch(action) {
+    //     ProfileReducer(this._state.profilePage, action)
+    //     DialogsReducer(this._state.dialogPage, action)
+    //     SidebarReducer(this._state.sidebar, action)
+    //     this._renderTree()
+    //
+    // }
 }

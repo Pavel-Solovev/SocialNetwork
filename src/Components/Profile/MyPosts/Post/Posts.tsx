@@ -1,6 +1,6 @@
 import React from "react";
 import s from './Posts.module.css';
-import {PostType} from "../../../../redux/state";
+import {PostType} from "../../../../redux/profile-reducer";
 
 
 type Post_contentType = {

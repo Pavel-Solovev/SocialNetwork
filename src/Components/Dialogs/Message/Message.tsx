@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import s from "../Dialogs.module.css";
 import {DialogItem} from "../DialogItem/DialogItem";
-import {DialogPageType} from "../../../redux/state";
+import {DialogPageType} from "../../../redux/dialogs-reducer";
 
 
 type MessageData = {
