@@ -1,5 +1,15 @@
 import {ActionsTypes} from "./redux-store";
 
+export type DialogDataType = {
+    id:number
+    name: string
+}
+
+export type MessagesDataType = {
+    id:number
+    message:string
+}
+
 let initialState = {
         dialogsData: [
             {id: 1, name: 'Name 1'},
@@ -8,23 +18,21 @@ let initialState = {
             {id: 4, name: 'Name 4'},
             {id: 5, name: 'Name 5'},
             {id: 6, name: 'Name 6'}
-        ],
+        ] as DialogDataType[],
         messagesData: [
             {id: 1, message: 'Hi'},
             {id: 2, message: 'How are you?'},
             {id: 3, message: 'Check this!'},
             {id: 4, message: '*smile*'},
             {id: 5, message: '*smile*'},
-        ],
+        ] as MessagesDataType[],
         newMessageChange: ''
 
 }
 
 export type DialogPageType = typeof initialState
 
-export type DialogDataType = typeof initialState.dialogsData[0]
 
-export type MessagesDataType = typeof initialState.messagesData[0]
 
 export type MessageActionsTypes =
     ReturnType<typeof addMessageAC> |
@@ -43,7 +51,7 @@ export const ChangeNewMessageAC = (newText: string) => {
     } as const
 }
 
-export const DialogsReducer = (state:DialogPageType = initialState, action: ActionsTypes) => {
+export const DialogsReducer = (state:DialogPageType = initialState, action: ActionsTypes): DialogPageType => {
     switch (action.type) {
         case ('ADD-MESSAGE'): {
             const newMessage: MessagesDataType = {

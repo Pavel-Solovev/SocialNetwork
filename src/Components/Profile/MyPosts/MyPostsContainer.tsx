@@ -1,16 +1,27 @@
-import {addPostAC, changeNewTextAC} from "../../../redux/profile-reducer";
+import {addPostAC, changeNewTextAC, ProfileDataType} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
 import {StoreType} from "../../../redux/redux-store";
+import {Dispatch} from "redux";
 
-const mapStateToProps = (state: StoreType) => {
-    const store = state.getState()
+type mapStatePropsType = {
+    profileData: ProfileDataType
+}
+
+const mapStateToProps = (state: StoreType): mapStatePropsType => {
     return {
-        store: store.profilePage
+        profileData: state.profilePage
     }
 }
 
-const mapDispatchToProps = (dispatch:any) => {
+type mapDispatchPropsType = {
+    addPostCallback: () => void
+    changeNewTextCallback: (title:string) => void
+}
+
+export type MyPostsType = mapStatePropsType & mapDispatchPropsType
+
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchPropsType => {
     return {
         addPostCallback: () => {
             dispatch(addPostAC());

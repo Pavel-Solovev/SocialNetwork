@@ -1,7 +1,13 @@
 import {ActionsTypes} from "./redux-store";
 
+export type PostType = {
+    id:number
+    description_post:string
+    likesCount:number
+    avatar_img:string
+}
 
-let initialState = {
+const initialState = {
     content_img: 'https://vjoy.cc/wp-content/uploads/2020/08/bezymyannyjprpapaava.jpg',
     title_name: 'Username',
     title_post: 'My Posts',
@@ -36,14 +42,12 @@ let initialState = {
             likesCount: 3,
             avatar_img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9knn6xg6FC1bl3qY7kXfunQkJ4hfspy27Qg&usqp=CAU'
         }
-    ],
+    ] as PostType[],
     newPostChange: '',
 
 }
 
 export type ProfileDataType = typeof initialState
-
-export type PostType = typeof initialState.post[0]
 
 export type ProfileActionsTypes = ReturnType<typeof addPostAC> |
     ReturnType<typeof changeNewTextAC>
@@ -58,12 +62,12 @@ export const addPostAC = () => {
 export const changeNewTextAC = (newText: string) => {
     return {
         type: 'CHANGE-NEW-TEXT',
-        newText: newText
+        newText: newText,
     } as const
 }
 
 
-export const ProfileReducer = (state: ProfileDataType = initialState, action: ActionsTypes) => {
+export const ProfileReducer = (state: ProfileDataType = initialState, action: ActionsTypes):ProfileDataType => {
     switch (action.type) {
         case 'ADD-POST': {
             const newPost: PostType = {

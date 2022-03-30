@@ -2,7 +2,7 @@ import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css';
 import {Posts} from "./Post/Posts";
 import {ProfileInfo} from "../ProfileInfo/ProfileInfo";
-import {ProfileDataType} from "../../../redux/profile-reducer";
+import {MyPostsType} from "./MyPostsContainer";
 
 type ButtonType = {
     button_add: string
@@ -13,13 +13,8 @@ const Button: ButtonType = {
     button_remove: 'Remove'
 }
 
-type PropsType = {
-    addPostCallback: () => void
-    changeNewTextCallback: (newText: string) => void
-    store: ProfileDataType
-}
 
-export const MyPosts = (props: PropsType) => {
+export const MyPosts = (props: MyPostsType) => {
 
     const addPost = () => {
         props.addPostCallback()
@@ -32,13 +27,13 @@ export const MyPosts = (props: PropsType) => {
 
     return (<>
             <div>
-            <ProfileInfo store={props.store}/>
+            <ProfileInfo store={props.profileData}/>
             </div>
             <div className={s.postsBlock}>
-                <h3><p className={s.title}>{props.store.title_name}</p></h3>
+                <h3><p className={s.title}>{props.profileData.title_name}</p></h3>
                 <div>
                     <div>
-                        <textarea value={props.store.newPostChange} onChange={onPostChange}/>
+                        <textarea value={props.profileData.newPostChange} onChange={onPostChange}/>
                     </div>
                     <div>
                         <button onClick={addPost}>{Button.button_add}</button>
@@ -47,8 +42,8 @@ export const MyPosts = (props: PropsType) => {
                 </div>
                 <div className={s.posts}>
                     <Posts
-                        title_post={props.store.title_post}
-                        description_post={props.store.post}
+                        title_post={props.profileData.title_post}
+                        description_post={props.profileData.post}
                     />
                 </div>
             </div>

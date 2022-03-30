@@ -1,43 +1,20 @@
 import {ActionsTypes} from "./redux-store";
 
-
-const initialState = {
-    users: [
-        {
-            user_id: 1,
-            fullName: 'name 1',
-            followed: true,
-            status: '34g',
-            location: {
-                city: 'Minsk',
-                country: 'Belarus'
-            }
-        },
-        {
-            user_id: 1,
-            fullName: 'name 2',
-            followed: false,
-            status: '12',
-            location: {
-                city: 'Kiev',
-                country: 'Ukraine'
-            }
-        },
-        {
-            user_id: 1,
-            fullName: 'name 3',
-            followed: true,
-            status: 'sdf',
-            location: {
-                city: 'Moscow',
-                country: 'Russia'
-            }
-        },
-
-    ]
+export type UsersType = {
+    user_id: number
+    photoUrl:string
+    fullName: string
+    followed: boolean
+    status: string
+    location:{
+        city: string
+        country: string
+    }
 }
 
-export type UsersType = typeof initialState.users
+const initialState = {
+    users: [] as UsersType[]
+}
 
 export type UsersDataType = typeof initialState
 
@@ -45,32 +22,32 @@ export type UsersActionsTypes = ReturnType<typeof followUnfollowAC> |
     ReturnType<typeof setUsersAC>
 
 
-export const followUnfollowAC = (user_id:number) => {
+export const followUnfollowAC = (userId:number) => {
     return {
         type: 'FOLLOW-UNFOLLOW',
-        user_id: user_id
+        userId: userId
     } as const
 }
 
-export const  setUsersAC = (users:UsersType) => {
+export const  setUsersAC = (users: UsersType[]) => {
     return {
         type: 'SET-USERS',
         users: users
     } as const
 }
 
-export const usersReducer = (state: UsersDataType = initialState, action: ActionsTypes) => {
+export const usersReducer = (state: UsersDataType = initialState, action: ActionsTypes): UsersDataType => {
     switch (action.type) {
         case 'FOLLOW-UNFOLLOW': {
             return{
                 ...state,
-                users: state.users.map(u => u.user_id === action.user_id ? {...u, followed: !u.followed} : u)
+                users: state.users.map(u => u.user_id === action.userId ? {...u, followed: !u.followed} : u)
             }
         }
         case 'SET-USERS': {
             return{
-                ...state,
-                users: [...state.users, action.users]
+                    ...state,
+                users: [...state.users, ...action.users]
             }
         }
         default:

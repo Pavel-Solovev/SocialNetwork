@@ -6,12 +6,12 @@ import {UsersActionsTypes, usersReducer} from "./users-reducer";
 
 export type ActionsTypes = ProfileActionsTypes | MessageActionsTypes | UsersActionsTypes
 
-const reducers = combineReducers({
+const rootReducer = combineReducers({
     profilePage: ProfileReducer,
     dialogPage: DialogsReducer,
     userPage: usersReducer,
     sidebar: SidebarReducer
 })
 
-export let store = createStore(reducers)
-export type StoreType = typeof store;
+export type StoreType = ReturnType<typeof rootReducer>;
+export const store = createStore(rootReducer)
